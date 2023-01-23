@@ -1,0 +1,9 @@
+{
+    "configurations": [
+        {
+            "name": "Build",
+            "type": "jps-build",
+            "module": "wordle-solver"
+        }
+    ]
+}

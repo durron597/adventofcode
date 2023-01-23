@@ -1,0 +1,75 @@
+digraph {
+rankdir="LR"
+TM [ style="filled" fillcolor="tomato" label="TM: 3" ]
+FK [ style="filled" fillcolor="tomato" label="FK: 4" ]
+XX [ style="filled" fillcolor="tomato" label="XX: 5" ]
+LR [ style="filled" fillcolor="tomato" label="LR: 7" ]
+OV [ style="filled" fillcolor="DodgerBlue" label="OV: 10" ]
+IN [ style="filled" fillcolor="DodgerBlue" label="IN: 11" ]
+JQ [ style="filled" fillcolor="DodgerBlue" label="JQ: 14" ]
+WC [ style="filled" fillcolor="DodgerBlue" label="WC: 15" ]
+KQ [ style="filled" fillcolor="DodgerBlue" label="KQ: 17" ]
+EL [ style="filled" fillcolor="DodgerBlue" label="EL: 18" ]
+FJ [ style="filled" fillcolor="ForestGreen" label="FJ: 19" ]
+DK [ style="filled" fillcolor="ForestGreen" label="DK: 20" ]
+ST [ style="filled" fillcolor="ForestGreen" label="ST: 21" ]
+PF [ style="filled" fillcolor="ForestGreen" label="PF: 23" ]
+MD [ style="filled" fillcolor="ForestGreen" label="MD: 25" ]
+PR -> { DX LR };
+DX -> { TM PR };
+DK -> { FA RG IX };
+FA -> { UX DK };
+UX -> { FA ST };
+ST -> { NS DE UX XU };
+DE -> { ST EL };
+EL -> { DE TY };
+TY -> { FJ EL };
+FJ -> { DO TY NN PS };
+PS -> { RG FJ };
+RG -> { PS DK };
+DO -> { XU FJ };
+XU -> { DO ST };
+NN -> { OV FJ };
+NS -> { WU ST };
+PF -> { BP WU };
+WU -> { PF NS };
+BP -> { MD PF };
+MD -> { BP };
+EZ -> { CH AA };
+EQ -> { AA GP };
+DW -> { FK AA };
+CY -> { KQ OK };
+KQ -> { VM YW CY };
+YW -> { OV KQ };
+OK -> { CY IN };
+IN -> { OK GS DU };
+GS -> { IN FR };
+JQ -> { VM FR };
+FR -> { JQ GS };
+VM -> { KQ JQ };
+OV -> { YW JT NN TK };
+JT -> { OV AA };
+AA -> { JT EZ HZ DW EQ };
+TK -> { TM OV };
+HZ -> { LR AA };
+WB -> { TM XX };
+XX -> { GP MN WB LM HU };
+LM -> { XX YY };
+OG -> { MN FK };
+MN -> { OG XX };
+GP -> { XX EQ };
+YY -> { LR LM };
+TM -> { WB PE DX TK CH };
+CH -> { EZ TM };
+XO -> { FK PE };
+PE -> { TM XO };
+FK -> { DW XO OG IC NR };
+IC -> { FK DU };
+DU -> { IN IC };
+NR -> { FK LR };
+IX -> { DK LR };
+WC -> { TJ };
+HU -> { TJ XX };
+TJ -> { WC HU };
+LR -> { IX NR YY HZ PR };
+}
