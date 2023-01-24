@@ -1,10 +1,6 @@
 package org.jared.twentyone
 
-import io.vavr.collection.List
 import io.vavr.control.Either
-import io.vavr.control.Option
-import io.vavr.control.Option.none
-import io.vavr.control.Option.some
 import org.jared.util.ScanIterator
 import java.util.*
 import kotlin.collections.ArrayDeque
@@ -47,20 +43,19 @@ fun main(args: Array<String>) {
     println(resultTwo)
 }
 
-fun partTwo(snailfishNumbers: ArrayDeque<Node>): Option<Int> {
-    val vavrList = List.ofAll(snailfishNumbers)
+fun partTwo(snailfishNumbers: ArrayDeque<Node>): Int {
+    val vavrList = snailfishNumbers.toList()
     val pairedAll = vavrList
             .flatMap { n -> vavrList.map { n2 -> Pair(n, n2) } }
     return pairedAll
-            .flatMap { t ->
+            .mapNotNull { t ->
                 (if (t.first === t.second) {
-                    none()
+                    null
                 } else {
-                    some(sum(t.first.deepCopy(), t.second.deepCopy()))
+                    sum(t.first.deepCopy(), t.second.deepCopy())
                 })
             }
-            .map(::magnitude)
-            .max()
+            .maxOf(::magnitude)
 }
 
 private fun partOne(inputList: ArrayDeque<Node>): Pair<Node, Int> {
@@ -173,19 +168,19 @@ fun explode(nodeValue: Node) {
 }
 
 fun magnitude(node: Node): Int {
-    if (node.value.isLeft) {
-        return node.value.left
+    return if (node.value.isLeft) {
+        node.value.left
     } else {
-        return 3 * magnitude(node.value.get().first) + 2 * magnitude(node.value.get().second)
+        3 * magnitude(node.value.get().first) + 2 * magnitude(node.value.get().second)
     }
 }
 
 data class Node(var parent: Node?, var value: Either<Int, Pair<Node, Node>>) {
     override fun toString(): String {
-        if (value.isLeft) {
-            return value.left.toString()
+        return if (value.isLeft) {
+            value.left.toString()
         } else {
-            return "[" + value.get().first + "," + value.get().second + "]";
+            "[" + value.get().first + "," + value.get().second + "]";
         }
     }
 
